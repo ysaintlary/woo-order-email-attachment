@@ -27,5 +27,7 @@
 /packages
 /routes
 /.wp-plugin-base-automation.json
+/debug-email.md
+/phpstan.neon
 
 npm-remediations.json
