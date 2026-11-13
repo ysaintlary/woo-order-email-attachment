@@ -4,7 +4,7 @@ Tags: woocommerce, xlsx, email, order, attachment
 Requires at least: 6.5
 Tested up to: 6.7
 Requires PHP: 8.0
-Stable tag: 1.6.2
+Stable tag: 1.6.3
 License: GPL-3.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -21,6 +21,15 @@ Ce plugin génère automatiquement un fichier Excel (.xlsx) contenant le détail
 3. Aucune configuration nécessaire : le fichier Excel est automatiquement joint aux e-mails de commande en cours
 
 == Changelog ==
+
+= 1.6.3 =
+* Fix - chore: exclude debug-email.md and phpstan.neon from release package.
+* Add - chore: add WooCommerce test plugin for Plugin Check.
+* Update - chore: enable readiness/quality/security packs with PUC exclusions.
+* Update - chore: update wp-plugin-base to v1.10.15.
+* Fix - fix: normalize dependabot.yml line endings to LF.
+* Fix - fix: bump minimum PHP to 8.0 for foundation compatibility.
+
 
 = 1.6.2 =
 * Fix - Rétablir le prix HT en nombre réel (format selon la locale Excel).
