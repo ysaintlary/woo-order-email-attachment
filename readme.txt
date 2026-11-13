@@ -4,7 +4,7 @@ Tags: woocommerce, xlsx, email, order, attachment
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 1.6.8
+Stable tag: 1.6.9
 License: GPL-3.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -21,6 +21,27 @@ Ce plugin génère automatiquement un fichier Excel (.xlsx) contenant le détail
 3. Aucune configuration nécessaire : le fichier Excel est automatiquement joint aux e-mails de commande en cours
 
 == Changelog ==
+
+= 1.6.9 =
+* Fix - fix: ignore PHPStan return.unusedType and instanceof.alwaysTrue errors.
+* Update - Release 1.6.8.
+* Fix - fix: ignore XLSXWriter class in PHPStan (vendored library excluded from scan).
+* Update - Release 1.6.7.
+* Fix - fix: align array double arrows per WordPress coding standards.
+* Update - Release 1.6.6.
+* Fix - fix: exclude vendored xlsxwriter from PHPCS and fix array formatting.
+* Update - Release 1.6.5.
+* Update - chore: bump Tested up to WordPress 7.1.
+* Update - Release 1.6.4.
+* Update - chore: ignore Plugin Check codes from vendored xlsxwriter library.
+* Update - Release 1.6.3.
+* Fix - chore: exclude debug-email.md and phpstan.neon from release package.
+* Add - chore: add WooCommerce test plugin for Plugin Check.
+* Update - chore: enable readiness/quality/security packs with PUC exclusions.
+* Update - chore: update wp-plugin-base to v1.10.15.
+* Fix - fix: normalize dependabot.yml line endings to LF.
+* Fix - fix: bump minimum PHP to 8.0 for foundation compatibility.
+
 
 = 1.6.8 =
 * Fix - fix: ignore XLSXWriter class in PHPStan (vendored library excluded from scan).
