@@ -11,3 +11,7 @@ parameters:
     -
       identifier: function.notFound
       message: '#wc_get_product#'
+    -
+      identifier: return.unusedType
+    -
+      identifier: instanceof.alwaysTrue
