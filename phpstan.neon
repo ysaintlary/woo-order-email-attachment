@@ -7,7 +7,7 @@ parameters:
   ignoreErrors:
     -
       identifier: class.notFound
-      message: '#WC_Email|WC_Order|WC_Order_Item_Product|WC_Product#'
+      message: '#WC_Email|WC_Order|WC_Order_Item_Product|WC_Product|XLSXWriter#'
     -
       identifier: function.notFound
       message: '#wc_get_product#'
