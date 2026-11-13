@@ -122,12 +122,12 @@ function WOCEA_attach_xlsx( $attachments, $email_id, $order, $email ) { // phpcs
 
 	$writer = new \XLSXWriter(); // phpcs:ignore WordPress.NamingConventions.ValidVariableName.VariableNotSnakeCase
 	$header = array(
-		'Commande'         => 'string',
-		'UGS'              => 'string',
-		'Gencod'           => 'string',
-		"Libellé article"  => 'string',
-		'Quantité'         => 'integer',
-		"Prix d'achat HT"  => '#,##0.00',
+		'Commande' => 'string',
+		'UGS' => 'string',
+		'Gencod' => 'string',
+		'Libellé article' => 'string',
+		'Quantité' => 'integer',
+		'Prix d\'achat HT' => '#,##0.00',
 	);
 
 	$writer->writeSheetHeader( 'Bon de commande', $header, array( 'suppress_row' => false ) ); // phpcs:ignore WordPress.NamingConventions.ValidVariableName.VariableNotSnakeCase

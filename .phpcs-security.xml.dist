@@ -20,6 +20,7 @@
   <exclude-pattern>*/tests/*</exclude-pattern>
   <exclude-pattern>*/vendor/*</exclude-pattern>
   <exclude-pattern>*/lib/wp-plugin-base/*</exclude-pattern>
+  <exclude-pattern>*/lib/xlsxwriter/*</exclude-pattern>
 
   <rule ref="WordPress.Security.EscapeOutput"/>
   <rule ref="WordPress.Security.NonceVerification"/>
