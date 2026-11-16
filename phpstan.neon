@@ -15,5 +15,3 @@ parameters:
       identifier: return.unusedType
     -
       identifier: instanceof.alwaysTrue
-    -
-      identifier: function.alreadyNarrowedType

@@ -104,31 +104,21 @@ function WOCEA_get_upload_dir() { // phpcs:ignore WordPress.NamingConventions.Va
  * @return array Modified attachments.
  */
 function WOCEA_attach_xlsx( $attachments, $email_id, $order, $email ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName.FunctionNameInvalid, Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed
-	// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
-	error_log( '[WOCEA] woocommerce_email_attachments called — email_id=' . $email_id );
-
 	if ( 'customer_processing_order' !== $email_id ) {
 		return $attachments;
 	}
 
 	if ( ! $order instanceof \WC_Order ) {
-		// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
-		error_log( '[WOCEA] $order is not WC_Order — type=' . ( is_object( $order ) ? get_class( $order ) : gettype( $order ) ) );
 		return $attachments;
 	}
 
 	$dir = WOCEA_get_upload_dir();
 	if ( ! $dir ) {
-		// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
-		error_log( '[WOCEA] upload dir returned false' );
 		return $attachments;
 	}
 
 	$order_number = $order->get_order_number();
 	$file_path    = $dir . '/SLS-toblerone-BL-' . $order_number . '.xlsx';
-
-	// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
-	error_log( '[WOCEA] generating XLSX for order ' . $order_number . ' at ' . $file_path );
 
 	$writer = new \XLSXWriter(); // phpcs:ignore WordPress.NamingConventions.ValidVariableName.VariableNotSnakeCase
 	$header = array(
@@ -160,13 +150,8 @@ function WOCEA_attach_xlsx( $attachments, $email_id, $order, $email ) { // phpcs
 	$writer->writeToFile( $file_path ); // phpcs:ignore WordPress.NamingConventions.ValidVariableName.VariableNotSnakeCase
 
 	if ( ! file_exists( $file_path ) ) {
-		// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
-		error_log( '[WOCEA] file NOT created at ' . $file_path );
 		return $attachments;
 	}
-
-	// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
-	error_log( '[WOCEA] file created (' . filesize( $file_path ) . ' bytes) — attaching to email' );
 
 	$attachments[] = $file_path;
 
