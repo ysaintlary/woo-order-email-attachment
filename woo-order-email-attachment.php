@@ -181,8 +181,8 @@ function WOCEA_cleanup_old_files() { // phpcs:ignore WordPress.NamingConventions
 }
 add_action( 'wocea_cleanup_xlsx_files', 'WOCEA_cleanup_old_files' );
 
-register_activation_hook(
-	__FILE__,
+add_action(
+	'init',
 	function () {
 		if ( ! wp_next_scheduled( 'wocea_cleanup_xlsx_files' ) ) {
 			wp_schedule_event( time(), 'hourly', 'wocea_cleanup_xlsx_files' );
@@ -190,9 +190,11 @@ register_activation_hook(
 	}
 );
 
-register_deactivation_hook(
-	__FILE__,
-	function () {
-		wp_clear_scheduled_hook( 'wocea_cleanup_xlsx_files' );
-	}
-);
+if ( function_exists( 'register_deactivation_hook' ) ) {
+	register_deactivation_hook(
+		__FILE__,
+		function () {
+			wp_clear_scheduled_hook( 'wocea_cleanup_xlsx_files' );
+		}
+	);
+}
