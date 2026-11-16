@@ -4,7 +4,7 @@ Tags: woocommerce, xlsx, email, order, attachment
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 1.6.13
+Stable tag: 1.6.14
 License: GPL-3.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -21,6 +21,12 @@ Ce plugin génère automatiquement un fichier Excel (.xlsx) contenant le détail
 3. Aucune configuration nécessaire : le fichier Excel est automatiquement joint aux e-mails de commande en cours
 
 == Changelog ==
+
+= 1.6.14 =
+* Fix - fix: ignore PHPStan function.alreadyNarrowedType in debug logging.
+* Update - Release 1.6.13.
+* Fix - debug: add error_log tracing to diagnose missing XLSX attachment.
+
 
 = 1.6.13 =
 * Fix - debug: add error_log tracing to diagnose missing XLSX attachment.
