@@ -149,18 +149,44 @@ function WOCEA_attach_xlsx( $attachments, $email_id, $order, $email ) { // phpcs
 
 	$writer->writeToFile( $file_path ); // phpcs:ignore WordPress.NamingConventions.ValidVariableName.VariableNotSnakeCase
 
-	$attachments[] = $file_path;
+	if ( ! file_exists( $file_path ) ) {
+		return $attachments;
+	}
 
-	add_action(
-		'shutdown',
-		function () use ( $file_path ) {
-			if ( file_exists( $file_path ) ) {
-				// phpcs:ignore WordPress.WP.AlternativeFunctions.unlink_unlink
-				unlink( $file_path );
-			}
-		}
-	);
+	$attachments[] = $file_path;
 
 	return $attachments;
 }
 add_filter( 'woocommerce_email_attachments', 'WOCEA_attach_xlsx', 10, 4 );
+
+function WOCEA_cleanup_old_files() { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName.FunctionNameInvalid
+	$dir = WOCEA_get_upload_dir();
+	if ( ! $dir ) {
+		return;
+	}
+
+	$files = glob( $dir . '/SLS-toblerone-BL-*.xlsx' );
+	if ( ! is_array( $files ) ) {
+		return;
+	}
+
+	$one_hour_ago = time() - HOUR_IN_SECONDS;
+	foreach ( $files as $file ) {
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_is_writable
+		if ( filemtime( $file ) < $one_hour_ago ) {
+			// phpcs:ignore WordPress.WP.AlternativeFunctions.unlink_unlink
+			unlink( $file );
+		}
+	}
+}
+add_action( 'wocea_cleanup_xlsx_files', 'WOCEA_cleanup_old_files' );
+
+register_activation_hook( __FILE__, function () {
+	if ( ! wp_next_scheduled( 'wocea_cleanup_xlsx_files' ) ) {
+		wp_schedule_event( time(), 'hourly', 'wocea_cleanup_xlsx_files' );
+	}
+} );
+
+register_deactivation_hook( __FILE__, function () {
+	wp_clear_scheduled_hook( 'wocea_cleanup_xlsx_files' );
+} );
